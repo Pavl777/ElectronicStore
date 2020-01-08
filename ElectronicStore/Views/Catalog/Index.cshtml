@@ -1,0 +1,17 @@
+﻿@using ElectronicStore.Models.Catalog;
+@model List<Product>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+
+    @foreach ( var m in Model)
+    {
+        <div class="col-md-6">
+            @m.ID @m.Name<br /> <img class="Product-imaage" src="@m.Img"/>
+        </div>
+    }
+</div>
+
+
+
