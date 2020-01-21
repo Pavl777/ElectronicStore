@@ -13,14 +13,14 @@
     </div>
     <div style="position:absolute;bottom:300px"class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <h3>Our Catalog</h3>
+            <div style="top:220px" class="col-sm-4">
+                <h4>@Html.ActionLink("Our catalog","Index","Catalog")</h4>
             </div>
-            <div class="col-sm-4">
-                One of three columns
-            </div>
-            <div class="col-sm-4">
-                One of three columns
+            <div style="top:220px" class="col-sm-4">
+                <h4>
+                    @Html.ActionLink("Make order","Index","Orders")
+                </h4>
+                
             </div>
         </div>
     </div>

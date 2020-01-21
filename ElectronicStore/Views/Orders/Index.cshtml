@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ElectronicStore.Models.Catalog.Order>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1>JOUOFIL</h1>
+
+table class="table">
+<table>
+<tr>
+    <th>
+        @Html.DisplayNameFor(model => model.Id)
+    </th>
+
+    <th>
+
+        @Html.DisplayNameFor(model => model.Email)
+
+    </th>
+    <th>
+        @Html.DisplayNameFor(model => model.IsCopleted)
+    </th>
+
+    <th></th>
+</tr>
+
+@foreach (var item in Model)
+{
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsCopleted)
+        </td>
+
+    </tr>
+}
+</table>

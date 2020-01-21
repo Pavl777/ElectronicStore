@@ -1,6 +1,8 @@
 ﻿using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using ElectronicStore.Models.Catalog;
+using ElectronicStore.Models.Catalog;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -18,16 +20,20 @@ namespace ElectronicStore.Models
         }
     }
 
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ProductDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext()
+        public ProductDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
-        public static ApplicationDbContext Create()
+        public static ProductDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new ProductDbContext();
         }
+
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
     }
 }

@@ -1,17 +1,32 @@
-﻿@using ElectronicStore.Models.Catalog;
-@model List<Product>
+﻿@model IEnumerable<ElectronicStore.Models.Catalog.Product>
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="row">
+<h2>Index</h2>
+<h1>
+    CAATALOG
+</h1>
 
-    @foreach ( var m in Model)
+@using (Html.BeginForm())
+{
+    <p style="position:absolute;right:2%;top:10%">
+        Searching: @Html.TextBox("SearchString") <br />
+        <input type="submit" value="Filter" />
+    </p>
+
+}
+
+
+
+
+<div class="row">
+    @foreach (var item in Model)
     {
-        <div class="col-md-6">
-            @m.ID @m.Name<br /> <img class="Product-imaage" src="@m.Img"/>
+
+        <div class="col-md-4">
+
+           @Html.ActionLink(item.Name,"Details","Catalog",new {id=item.ID},null),@item.Model,@item.Price,@item.Img<br />
         </div>
+
     }
 </div>
-
-
-
