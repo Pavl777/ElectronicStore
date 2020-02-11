@@ -3,9 +3,24 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div>
-    You description
-    @Html.DisplayFor(model => model.Description) 
-    <img src="/Content/Image/FridgeAristone.jfif"/>
-</div>
+
+    <h4>Description:</h4>
+    @Html.DisplayFor(model => model.Description)<br />
+
+    <img src="@Url.Content("~/"+ Model.Img)"/>
+
+@using (Html.BeginForm("AddItem", "Orders", FormMethod.Post))
+{
+    
+    <input type="hidden" name="ProductId" id="ProductId" value="@Model.ID" />
+
+    <span> Quantity</span>
+    <input type="number" min="0" name="Quantity" id="Quantity" />
+    <input type="hidden" name="OrderId" id="OrderId" value="@ViewBag.orderId" />
+    <button type="submit" class="btn btn-primary"> Add to order</button>
+}
+
+
+
+
 

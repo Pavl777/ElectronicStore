@@ -17,13 +17,21 @@ namespace ElectronicStore.Controllers
 
 
         // GET: Products
-        public ActionResult Index()
+        public ActionResult Index(int? orderId,string searchString)
         {
-            return View(db.Products.ToList());
+            var product = from m in db.Products
+                         select m;
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                product = product.Where(s => s.Name.Contains(searchString));
+            }
+            ViewBag.orderId = orderId;
+            return View(product);
         }
 
         // GET: Products/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id,int? orderId)
         {
             if (id == null)
             {
@@ -34,62 +42,13 @@ namespace ElectronicStore.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.orderId = orderId ?? 0;
             return View(product);
         }
+
 
         // GET: Products/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Products/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Model,Price,Description,Type")] Product product)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            return View(product);
-        }
-
-        // GET: Products/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Product product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-            return View(product);
-        }
-
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "ID,Name,Model,Price,Description,Type")] Product product)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        db.Entry(product).State = EntityState.Modified;
-        //        db.SaveChanges();
-        //        return RedirectToAction("Index");
-        //    }
-        //    return View(product);
-        //}
+       
 
         // GET: Products/Delete/5
         public ActionResult Delete(int? id)
@@ -102,6 +61,11 @@ namespace ElectronicStore.Controllers
             if (product == null)
             {
                 return HttpNotFound();
+            }
+            else
+            {
+                db.Products.Remove(product);
+                db.SaveChanges();
             }
             return View(product);
         }

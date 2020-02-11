@@ -170,20 +170,14 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\CatalogController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001211941529_AddImageMigration.cs" />
-    <Compile Include="Migrations\202001211941529_AddImageMigration.designer.cs">
-      <DependentUpon>202001211941529_AddImageMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Catalog\Cart.cs" />
     <Compile Include="Models\Catalog\Order.cs" />
     <Compile Include="Models\Catalog\OrderDetails.cs" />
     <Compile Include="Models\Catalog\Product.cs" />
@@ -201,18 +195,31 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Image\background20.jpg" />
+    <Content Include="Content\Image\Beko.jfif" />
+    <Content Include="Content\Image\brown.jfif" />
+    <Content Include="Content\Image\firstpage.jfif" />
+    <Content Include="Content\Image\Firstpage1.jfif" />
+    <Content Include="Content\Image\firstpage2.jfif" />
+    <Content Include="Content\Image\firstpage4.jfif" />
+    <Content Include="Content\Image\firstpage5.jfif" />
+    <Content Include="Content\Image\fon.jpeg" />
     <Content Include="Content\Image\fridg.jfif" />
     <Content Include="Content\Image\FridgeArgo.jfif" />
     <Content Include="Content\Image\FridgeAristone.jfif" />
     <Content Include="Content\Image\FridgeBosch.jfif" />
     <Content Include="Content\Image\FridgeS.jfif" />
+    <Content Include="Content\Image\fridT.jfif" />
     <Content Include="Content\Image\Iphone.jfif" />
+    <Content Include="Content\Image\Ipht.jfif" />
     <Content Include="Content\Image\Micr4.jfif" />
     <Content Include="Content\Image\Micr5.jfif" />
     <Content Include="Content\Image\Micro3.jfif" />
     <Content Include="Content\Image\Microw.jfif" />
     <Content Include="Content\Image\Microw1.jfif" />
     <Content Include="Content\Image\Microw2.jfif" />
+    <Content Include="Content\Image\newfon.jfif" />
+    <Content Include="Content\Image\newmicrT.jfif" />
     <Content Include="Content\Image\Nokia.jfif" />
     <Content Include="Content\Image\SamSu.jfif" />
     <Content Include="Content\Image\Samsung.jfif" />
@@ -221,7 +228,7 @@
     <Content Include="Content\Image\Vac3.jfif" />
     <Content Include="Content\Image\Vac4.jfif" />
     <Content Include="Content\Image\Vacum1.jfif" />
-    <Content Include="Content\Image\Xiaomi.jfif" />
+    <Content Include="Content\Image\new.jfif" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -344,29 +351,9 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Catalog\Index.cshtml" />
     <Content Include="Views\Catalog\Details.cshtml" />
-    <Content Include="Views\Purchase.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Scripts\umd\popper.min.js.map" />
     <Content Include="Scripts\umd\popper.js.map" />
@@ -378,6 +365,9 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Catalog\Form.cshtml" />
+    <Content Include="Views\Orders\CartAction.cshtml" />
+    <Content Include="Views\Orders\Completed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -392,11 +382,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001211941529_AddImageMigration.resx">
-      <DependentUpon>202001211941529_AddImageMigration.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

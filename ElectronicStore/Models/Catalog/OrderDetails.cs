@@ -14,8 +14,11 @@ namespace ElectronicStore.Models.Catalog
         public int OrderId { get; set; }//foreign key
         public int Quantity { get; set; }
         [ForeignKey("ProductId") ]
-        public Product Product { get; set; }
+        public virtual Product Product { get; set; }
         [ForeignKey("OrderId")]
-        public Order Order { get; set; }
+        public virtual Order Order { get; set; }
+
+        
     }
+
 }
